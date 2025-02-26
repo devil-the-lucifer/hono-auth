@@ -9,7 +9,10 @@ COPY package.json bun.lockb ./
 RUN bun install --production
 
 # Copy source code
-COPY src/ src/
+COPY . .
+
+# Build the application
+RUN npx -y bun src/scripts/deployment.js -s
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -19,4 +22,4 @@ ENV PORT=80
 EXPOSE 80
 
 # Start the application
-CMD ["bun", "run", "src/index.ts"] 
+CMD ["bun", "dist/index.js"] 
