@@ -13,10 +13,10 @@ COPY src/ src/
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=4000
+ENV PORT=80
 
 # Expose port
-EXPOSE 4000
+EXPOSE 80
 
 # Start the application
 CMD ["bun", "run", "src/index.ts"] 
