@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "9000:9000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/dating_app
+      - REDIS_URL=redis://redis:6379
+      - JWT_ACCESS_SECRET=your-access-secret-key
+      - JWT_REFRESH_SECRET=your-refresh-secret-key
+    depends_on:
+      - mongodb
+      - redis
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mongodb_data:
+  redis_data: 

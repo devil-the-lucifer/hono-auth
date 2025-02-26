@@ -1,0 +1,1 @@
+web: bun dist/index.js 
